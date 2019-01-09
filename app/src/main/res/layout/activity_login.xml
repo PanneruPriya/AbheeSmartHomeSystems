@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/backgrnd1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="360dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/relative"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="340dp"
+            android:orientation="vertical"
+            android:paddingTop="30dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/name2"
+                    android:singleLine="true"
+                    android:drawableTint="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:hint="Email or Mobile"
+                    android:id="@+id/username"
+                    android:drawablePadding="5dp"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/lock2"
+                    android:hint="Password"
+                    android:digits="0123456789"
+                    android:drawablePadding="5dp"
+                    android:maxLength="4"
+                    android:drawableTint="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:inputType="numberPassword"
+                    android:id="@+id/passwordL"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/forgotPswd"
+                    android:text="Forgot Password?"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_margin="22dp"
+                android:background="@drawable/button"
+                android:text="Login"
+                android:id="@+id/btn_signIn"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New to Abhee?"
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register Here!"
+                    android:id="@+id/registerHere"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimary"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/user_profile_photo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="143dp"
+        android:background="@drawable/user_profile_image_background"
+        android:elevation="4dp"
+        android:src="@drawable/profile" />
+
+</RelativeLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home"/>
+        <!--<group android:checkableBehavior="single"-->
+            <!--android:id="@+id/group8">-->
+            <!--<item android:id="@+id/nav_products"-->
+                <!--android:icon="@drawable/products"-->
+                <!--android:title="Products"/>-->
+        <!--</group>-->
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+        <item android:id="@+id/nav_profile"
+            android:icon="@drawable/personal_info"
+            android:title="Profile"/>
+    </group>
+    <!--<group android:checkableBehavior="single"-->
+        <!--android:id="@+id/group2">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_notify"-->
+            <!--android:icon="@drawable/notification"-->
+            <!--android:title="Notifications" />-->
+    <!--</group>-->
+    <!--<group android:checkableBehavior="single"-->
+        <!--android:id="@+id/group3">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_ticket"-->
+            <!--android:icon="@drawable/ticket_status"-->
+            <!--android:iconTint="#000"-->
+            <!--android:title="Ticket Status" />-->
+    <!--</group>-->
+    <!--<group android:checkableBehavior="single"-->
+        <!--android:id="@+id/group4">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_servicerequest"-->
+            <!--android:icon="@drawable/service"-->
+            <!--android:iconTint="#000"-->
+            <!--android:title="Service Request"/>-->
+    <!--</group>-->
+    <!--<group android:checkableBehavior="single"-->
+        <!--android:id="@+id/group5">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_enquiry"-->
+            <!--android:icon="@drawable/enquiry"-->
+            <!--android:iconTint="#000"-->
+            <!--android:title="Enquiry"/>-->
+    <!--</group>-->
+        <group android:checkableBehavior="single"
+            android:id="@+id/group6">
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="Logout" />
+        </group>
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:title="Contact Us" />
+            <item
+                android:id="@+id/nav_privacy"
+                android:title="Privacy Policy" />
+            <item
+                android:id="@+id/nav_terms"
+                android:title="Terms and Conditions"/>
+
+        </menu>
+    </item>
+</menu>

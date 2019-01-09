@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    android:padding="6dp" >
+
+        <ImageView
+                android:id="@+id/display_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+               />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+                <TextView
+                    android:id="@+id/display_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:text="Item1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray"
+                    android:textSize="9dp"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:id="@+id/display_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Item1"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="9dp"
+                    android:singleLine="true"
+                    />
+    </LinearLayout>
+            </LinearLayout>
+
+

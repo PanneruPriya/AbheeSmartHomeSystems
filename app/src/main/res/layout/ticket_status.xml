@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:weightSum="1"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight=".9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv1"
+            android:textSize="15dip"
+            android:textColor="@color/blackColor"
+            android:text="Service Request for my LG AC"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv1"
+            android:textColor="#343434"
+            android:textSize="13dip"
+            android:text="Service Request for my LG AC"
+            android:id="@+id/tv2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv2"
+            android:textSize="13dip"
+            android:textColor="@color/red"
+            android:text="Service Request for my LG AC"
+            android:id="@+id/tv3"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:src="@drawable/arrow"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight=".1"/>
+</LinearLayout>

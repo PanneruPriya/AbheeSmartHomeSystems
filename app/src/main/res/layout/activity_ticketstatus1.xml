@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--android:background="@drawable/cellshape"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:padding="15dp">
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Customer Request"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                     android:layout_marginTop="5dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Company  "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Company"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Model "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5"/>
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Model"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Task Number "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5"/>
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Task_No"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Address "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5"
+                        />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/communicationaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Request Time "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5"
+                        />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Due_Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Description "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Warranty "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5"
+                        />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/warranty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Category "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="9dp"
+                    android:textSize="@dimen/fab_margin"
+                    android:hint="Uploaded Image"/>
+                <ImageView
+                    android:id="@+id/cusUploaded"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <!--android:background="@drawable/cellshape"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:padding="15dp">
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="center"
+                    android:text="Admin Response"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Assigned to "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/assignedtoA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Mobile Number "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:layout_weight="1.5" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/mobilenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColor="@color/year"
+                        android:background="@drawable/cellshape"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+                 <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Description "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:layout_weight="1.5"
+                    />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/descriptionA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/year"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Note "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:layout_weight="1.5"
+                    />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/subjectA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/year"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="0dp">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="status  "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:layout_weight="1.5" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/kstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/year"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Task Deadline "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:layout_weight="1.5" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/taskdeadlineA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/year"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Priority "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:layout_weight="1.5"
+                    />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/priorityA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/year"
+                    android:background="@drawable/cellshape"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="9dp"
+                    android:id="@+id/upload"
+                    android:visibility="gone"
+                    android:textSize="@dimen/fab_margin"
+                    android:hint="Uploaded Image"/>
+                <ImageView
+                    android:id="@+id/adminUploading"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"/>
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="ReAssign"
+                    android:id="@+id/reassign"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:background="@drawable/button"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
+
+
+
+
+
+

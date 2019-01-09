@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+     <ImageView
+        android:layout_width="140dp"
+        android:layout_height="110dp"
+        android:id="@+id/imgSR"
+        android:src="@drawable/ic_launcher"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="company"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:id="@+id/cmpnySR"
+            android:textColor="@color/blackColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="model"
+            android:id="@+id/modelSR"
+            android:textSize="14dp"
+            android:textColor="@color/blackColor"/>
+
+    </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Address"
+            android:textColor="@color/blackColor"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/addressM"
+                android:background="@drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.3"
+                android:gravity="top|left"
+                android:hint="Enter Address"
+                android:imeOptions="actionNext"
+                android:paddingLeft="10dp"
+                android:maxLines="5"
+                android:textColor="@color/blackColor" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/blackColor"
+            android:text="Comments"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+
+        <EditText
+                android:id="@+id/descM"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.3"
+                android:gravity="top|left"
+                android:hint="Enter Comments"
+        android:background="@drawable/edit_text"
+                android:imeOptions="actionNext"
+                android:paddingLeft="10dp"
+                android:maxLines="5"
+                android:textColor="@color/blackColor" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2"
+        android:paddingLeft="1dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Image"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image"
+            android:backgroundTint="@color/gray"
+            android:hint="No ChooseFile"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:hint="Browse"
+            android:paddingLeft="10dp"
+            android:background="@drawable/edit_text"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/btn_Choose" />
+        </LinearLayout>
+                <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:background="@drawable/edit_text"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/btn_Submit"
+                android:layout_gravity="center"
+                android:layout_marginStart="60dp"
+                android:text="Submit"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="Reset"
+                android:background="@drawable/edit_text"
+
+                android:id="@+id/btn_Reset"/>
+
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    </LinearLayout>
+

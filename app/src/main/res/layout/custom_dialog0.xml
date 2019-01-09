@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Enter the otp here:"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--tools:ignore="HardcodedText" />-->
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="otp here"
+        android:inputType="number"
+        android:maxLength="4"
+        android:digits="0123456789"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        tools:ignore="HardcodedText">
+        <requestFocus/>
+    </EditText>
+</LinearLayout>

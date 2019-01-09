@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+
+    <LinearLayout
+        android:id="@+id/customlinear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_margin="10dp"
+            android:text="Enter Mobile Number"
+            android:textColor="#FFF"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/close_dialog1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/icons8_cancel_50"
+            android:backgroundTint="#FFF" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editT5"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:maxLength="10"
+            android:textSize="@dimen/text_size_normal"
+
+            android:layout_gravity="center"
+            android:background="@drawable/border_layout"
+            android:hint="Mobile Number"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:digits="0123456789"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#000" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editT5"
+
+            android:layout_alignStart="@+id/editT5"
+            android:layout_below="@+id/editT5"
+            android:layout_gravity="center"
+            android:layout_marginLeft="49dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button"
+            android:text="Submit"
+            android:textColor="#fff" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+
+
+    <!--</FrameLayout>-->

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:background="@color/gray">
+   <!-- <LinearLayout
+        android:id="@+id/toolbar"
+        android:background="@color/grayBack"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:background="@color/grayBack"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:text="Companies"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"/>
+    </LinearLayout>
+  -->  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+        <GridView
+            android:numColumns="1"
+            android:columnWidth="50dp"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="2dp"
+            android:stretchMode="columnWidth"
+            android:padding="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:footerDividersEnabled="false"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grid"
+            />
+        <!--<ImageView-->
+            <!--android:id="@+id/imagePrd"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--/>-->
+
+    </LinearLayout>
+</FrameLayout>

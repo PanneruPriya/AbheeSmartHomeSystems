@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Abhee Smart Home Systems</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+
+    <string name="next">NEXT</string>
+
+    <string name="skip">SKIP</string>
+
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Hello Food!</string>
+
+    <string name="slide_1_desc"> Home Theaters, Professional Audio, Home Automation installation and services</string>
+
+    <string name="slide_2_title">Movie Tickets</string>
+
+    <string name="slide_2_desc">Get the status of Service Request</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+
+    <string name="slide_3_desc">Easiest way to send service request</string>
+
+    <string name="slide_4_title">World Travel</string>
+
+    <string name="slide_4_desc">Get Quotation based on products selected.</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+
+    <string name="play_again">Play Again</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
