@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -406,6 +407,7 @@ public class PinEnterActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                sendDetailsToServerPin();
                 Toast.makeText(getApplicationContext(), "Could not get data from Server ", Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -415,6 +417,9 @@ public class PinEnterActivity extends AppCompatActivity {
                 return headers;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
 
     }

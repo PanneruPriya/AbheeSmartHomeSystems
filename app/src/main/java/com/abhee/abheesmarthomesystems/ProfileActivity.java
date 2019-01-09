@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -261,9 +262,13 @@ public class ProfileActivity extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    getDetailsFromServer();
                     Toast.makeText(getActivity().getApplicationContext(), "Could not get Data from Online Server", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
         } catch (JSONException e) {
         }
@@ -357,14 +362,18 @@ public class ProfileActivity extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    sendDetailstoServer();
                     Toast.makeText(getActivity().getApplicationContext(), "Could not get Data from Online Server", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
         } catch (JSONException e) {
         }
     }
-    public void otp(final String otp){
+   /* public void otp(final String otp){
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.custom_dialog, null);
         final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
@@ -400,7 +409,7 @@ public class ProfileActivity extends Fragment {
                 dialog.hide();
             }
         });
-    }
+    }*/
 
     private void Verified() {
         try {
@@ -438,9 +447,13 @@ public class ProfileActivity extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Verified();
                     Toast.makeText(getActivity().getApplicationContext(), "Could not get Data from Online Server11", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
         } catch (JSONException e) {
         }

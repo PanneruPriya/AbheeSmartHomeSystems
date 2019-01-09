@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -104,7 +105,7 @@ public class Ticketstatusquotation1Activity extends Fragment {
             public void onClick(View view) {
 
                 LayoutInflater inflater = getLayoutInflater();
-                View alertLayout = inflater.inflate(R.layout.imagedialog, null);
+                View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
                 /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
                 // userInput.setText(code);
                 final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
@@ -133,7 +134,7 @@ public class Ticketstatusquotation1Activity extends Fragment {
             @Override
             public void onClick(View view) {
                 LayoutInflater inflater = getLayoutInflater();
-                View alertLayout = inflater.inflate(R.layout.imagedialog, null);
+                View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
                 /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
                 // userInput.setText(code);
                 final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
@@ -224,10 +225,14 @@ public class Ticketstatusquotation1Activity extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                chik();
+                //chik();
+                getDetailsToServer();
                 // Toast.makeText(getActivity().getApplicationContext(), "Error" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
     public void chik() {

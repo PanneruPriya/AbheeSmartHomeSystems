@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -489,10 +490,15 @@ public class ServiceRequestActivity extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    chik();
+                    //chik();
+                    getDetailsFromServer();
                    // Toast.makeText(getActivity().getApplicationContext(), "Could not get Data from Online Server", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
             queue.add(stringRequest);
         } catch (JSONException e) {
         }
@@ -540,7 +546,8 @@ public class ServiceRequestActivity extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                chik();
+                //chik();
+                sendDetailsToServer();
                // Toast.makeText(getContext(), "Error:---" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -550,6 +557,9 @@ public class ServiceRequestActivity extends Fragment {
                 return headers;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
@@ -745,7 +755,7 @@ public class ServiceRequestActivity extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                getDataforServer();
             }
         }) {
 
@@ -760,6 +770,9 @@ public class ServiceRequestActivity extends Fragment {
             }
 
         };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 

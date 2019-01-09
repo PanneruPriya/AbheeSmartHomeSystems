@@ -203,6 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     dialogbox.prograssBoxClose();
+                    dialogbox.MessageBoxShow(LoginActivity.this,"Server is Show");
                    // Toast.makeText(LoginActivity.this, "Data is not getting", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(getApplicationContext(), "Error:-" + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }

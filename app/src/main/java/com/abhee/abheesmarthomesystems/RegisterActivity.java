@@ -158,6 +158,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                sendDetailsToServerUser();
                 Toast.makeText(RegisterActivity.this, "We are Unable to Provide Data"  , Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -169,7 +170,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         };
         DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(retryPolicy);
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
@@ -324,6 +327,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    sendDetailsToServer();
                    // Toast.makeText(getApplicationContext(), "We are Unable to Provide Data", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 }

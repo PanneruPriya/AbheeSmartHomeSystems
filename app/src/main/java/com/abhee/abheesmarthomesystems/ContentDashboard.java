@@ -32,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -292,11 +293,15 @@ public class ContentDashboard extends Fragment implements  BaseSliderView.OnSlid
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                chik();
+                //chik();
+                sendDetailsToServer();
                 Log.i("alert","chik");
                // Toast.makeText(getActivity().getApplicationContext(), "Error" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
@@ -323,14 +328,7 @@ public class ContentDashboard extends Fragment implements  BaseSliderView.OnSlid
     public void onPageScrollStateChanged(int state) {
     }
 
-    /*public void AddImagesUrlOnline(){
-        HashMapForURL = new HashMap<String, String>();
-        HashMapForURL.put("CupCake", "http://androidblog.esy.es/images/cupcake-1.png");
-        HashMapForURL.put("Donut", "http://androidblog.esy.es/images/donut-2.png");
-        HashMapForURL.put("Eclair", "http://androidblog.esy.es/images/eclair-3.png");
-        HashMapForURL.put("Froyo", "http://androidblog.esy.es/images/froyo-4.png");
-        HashMapForURL.put("GingerBread", "http://androidblog.esy.es/images/gingerbread-5.png");
-    }*/
+
     public void AddImageUrlFormLocalRes(){
         HashMapForLocalRes = new HashMap<String, Integer>();
         HashMapForLocalRes.put("Home Theaters", R.drawable.slide_04);

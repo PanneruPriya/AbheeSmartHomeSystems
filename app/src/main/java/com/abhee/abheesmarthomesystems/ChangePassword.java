@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -165,9 +167,13 @@ public class ChangePassword extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    sendDetailstoServer();
                     Toast.makeText(getActivity(), "Could not get Data from Online Server", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
         } catch (JSONException e) {
         }

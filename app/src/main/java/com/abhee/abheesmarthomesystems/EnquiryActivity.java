@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -314,6 +315,7 @@ public class EnquiryActivity extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                sendDetailsToServer();
                 Toast.makeText(getContext(), "Server not Responding" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -323,6 +325,9 @@ public class EnquiryActivity extends Fragment {
                 return headers;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
@@ -467,10 +472,14 @@ public class EnquiryActivity extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    chik();
+                    //chik();
+                    getDetailsFromServer();
                    // Toast.makeText(getActivity().getApplicationContext(), "Could not get Data from Online Server", Toast.LENGTH_SHORT).show();
                 }
             });
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
         } catch (JSONException e) {
         }

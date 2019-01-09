@@ -40,6 +40,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -291,9 +292,12 @@ public class Product_GetQuotation1 extends Fragment implements OnMapReadyCallbac
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                getDDeatilFromSServer12();
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -390,9 +394,13 @@ public class Product_GetQuotation1 extends Fragment implements OnMapReadyCallbac
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                send_data(loc);
                 Toast.makeText(getContext().getApplicationContext(), "error in response", Toast.LENGTH_SHORT).show();
             }
         });
+        StringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(StringRequest);
     }
     private void clearBox() {

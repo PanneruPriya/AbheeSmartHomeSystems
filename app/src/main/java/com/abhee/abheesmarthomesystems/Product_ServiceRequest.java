@@ -45,6 +45,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -355,7 +356,7 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                getDataforServer();
             }
         }) {
 
@@ -370,6 +371,9 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
             }
 
         };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -418,7 +422,7 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
 
     }
 
-    private void sendDetailsToServer(String loc) {
+    private void sendDetailsToServer(final String loc) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Map<String, String> postParam = new HashMap<String, String>();
@@ -459,6 +463,7 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                sendDetailsToServer(loc);
                 Toast.makeText(getContext(), "Error:-" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -468,6 +473,9 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
                 return headers;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
