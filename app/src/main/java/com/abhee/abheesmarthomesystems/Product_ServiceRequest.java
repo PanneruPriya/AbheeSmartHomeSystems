@@ -285,16 +285,23 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
                 if (!isValidSurname(surname)) {
                     descE.setError("Add description");
                 }
+                if(spinner.getSelectedItemPosition()==0){
+                    Toast.makeText(getActivity(),"Plaese Select the Requset Type",Toast.LENGTH_SHORT).show();
+                }
+                if(times.getSelectedItemPosition()==0){
+                    Toast.makeText(getActivity(),"Plaese Select the Service Time",Toast.LENGTH_SHORT).show();
+                }
                 /*if (isValidName(name)&& isValidSurname(surname)&&encodedImage!=null &&rb.isChecked() ){
                     //encodedImage = Base64.encodeToString(img_store, Base64.DEFAULT);
                     Log.e("img", "img" + encodedImage);
 
                     sendDetailsToServer();
                 }*/
-                if (name != null && surname != null && encodedImage != null ) {
-                    progressDialog.setTitle("In Progress");
-                    progressDialog.setMessage("please wait...");
-                    progressDialog.show();
+                if ((!addE.getText().toString().equals(null)&&addE.getText().length()!=0)
+                        &&(!descE.getText().toString().equals(null)&&descE.getText().length()!=0)
+                        &&(spinner.getSelectedItemPosition()!=0)
+                        &&(times.getSelectedItemPosition()!=0)) {
+
                     sendDetailsToServer(loc);
                 }
                 /*if (rbg.getCheckedRadioButtonId() == -1) {
@@ -423,7 +430,9 @@ public class Product_ServiceRequest extends Fragment implements LocationListener
     }
 
     private void sendDetailsToServer(final String loc) {
-
+        progressDialog.setTitle("In Progress");
+        progressDialog.setMessage("please wait...");
+        progressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Map<String, String> postParam = new HashMap<String, String>();
         postParam.put("message", descE.getText().toString());

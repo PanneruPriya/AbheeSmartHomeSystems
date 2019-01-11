@@ -89,7 +89,7 @@ public class NotificationsActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String,String> hm = list.get(position);
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame, new NotificationDetails().newInstance(hm.get("taskno"),customerid));
+                transaction.replace(R.id.frame, new NotificationDetails().newInstance(hm.get("taskno"),customerid, hm.get("serviceType")));
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 transaction.addToBackStack("tag");
                 transaction.commit();
@@ -111,18 +111,43 @@ public class NotificationsActivity extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            Log.i("notificationList",response.toString());
                             JSONObject jsonObject = new JSONObject(response.toString());
-                            JSONArray jsonArray = jsonObject.getJSONArray("NotificationList");
-                            for (int i=0;i<jsonArray.length();i++) {
-                                HashMap<String, String> hm = new HashMap<>();
-                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                JSONArray jsonArray1 = jsonObject1.getJSONArray("" + i);
-                                for (int j = 0; j < jsonArray1.length(); j++){
-                                    Log.i("ara",""+jsonArray1.length());                                    JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
-                                    hm.put("serviceType", jsonObject2.getString("servicetype"));
-                                    hm.put("taskno", jsonObject2.getString("taskno"));
-                                    hm.put("description", jsonObject2.getString("description"));
-                                    list.add(hm);
+                            String s = jsonObject.getString("status");
+                            String[] data = s.split(",");
+                            if(s.equals("Not_Found")){
+
+                            }else {
+                                for (int j = 0; j <data.length; j++) {
+                                    String ss = data[j];
+                                    Log.i("listtttt", ss);
+                                    if (ss.equals("Quotation_List")) {
+                                        JSONArray jsonArray = jsonObject.getJSONArray("Quotation");
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            HashMap<String, String> hm = new HashMap<>();
+                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                            hm.put("serviceType",jsonObject1.getString("request_type"));
+                                            hm.put("taskno",jsonObject1.getString("salesrequestnumber"));
+                                            hm.put("description",jsonObject1.getString("reqdesc"));
+                                            list.add(hm);
+                                        }
+                                    }
+                                    if (ss.equals("Service_List")) {
+                                        JSONArray jsonArray = jsonObject.getJSONArray("Service");
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            HashMap<String, String> hm = new HashMap<>();
+                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                            JSONArray jsonArray1 = jsonObject1.getJSONArray("" + i);
+                                            for (int k = 0; k < jsonArray1.length(); k++) {
+                                                Log.i("ara", "" + jsonArray1.length());
+                                                JSONObject jsonObject2 = jsonArray1.getJSONObject(k);
+                                                hm.put("serviceType", jsonObject2.getString("request_type"));
+                                                hm.put("taskno", jsonObject2.getString("taskno"));
+                                                hm.put("description", jsonObject2.getString("description"));
+                                                list.add(hm);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             CustomAdapter1 adapter = new CustomAdapter1(list);
@@ -181,7 +206,7 @@ public class NotificationsActivity extends Fragment {
             TextView tv1 = (TextView) convertView.findViewById(R.id.tv2);
             TextView tv2 = (TextView) convertView.findViewById(R.id.tv3);
 
-            tv.setText("ServiceType: " + hm.get("serviceType"));
+            tv.setText("Request Type: " + hm.get("serviceType"));
             tv1.setText("Ticket No: " + hm.get("taskno"));
             // tv2.setText(desc);
             tv2.setText("Description: " + hm.get("description"));

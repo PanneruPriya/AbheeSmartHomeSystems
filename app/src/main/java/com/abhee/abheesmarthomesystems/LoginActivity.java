@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (uname != null && pwd != null) {
                     sendDetailsToServer();
+                   // dialogbox.SuccessMessage(LoginActivity.this,"Loging Success");
                 }
             }
         });
@@ -179,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                         }else{
                             Toast.makeText(getApplicationContext(),jsonObject.getString("status").toString(),Toast.LENGTH_SHORT).show();
                             dialogbox.prograssBoxClose();
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -203,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     dialogbox.prograssBoxClose();
-                    dialogbox.MessageBoxShow(LoginActivity.this,"Server is Show");
+                    dialogbox.ErrorMessage(LoginActivity.this,"Server Is Slow");
                    // Toast.makeText(LoginActivity.this, "Data is not getting", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(getApplicationContext(), "Error:-" + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }

@@ -285,6 +285,26 @@ public class ServiceRequestActivity extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final String name=phone.getText().toString();
+                if (!isValidPhone(name)){
+                    phone.setError("Plaese Enter the Mobile Number");
+                }
+                final String surname=address.getText().toString();
+                if (!isValidAddress(surname)){
+                    address.setError("Plaese Enter the Address");
+                }
+                if(description.getText().toString().equals(null)&&description.getText().length()>0){
+                    description.setText("  ");
+                }
+                if(times.getSelectedItem().equals("Select Time")){
+                    Toast.makeText(getActivity(),"Plaese Select the Service Time",Toast.LENGTH_SHORT).show();
+                }
+                if(spinner.getSelectedItemPosition()==0){
+                    Toast.makeText(getActivity(),"Plaese Select the Requset Type",Toast.LENGTH_SHORT).show();
+                }
+
+
                 if(encodedImage == null){
                     builder1.setMessage("Please select image")
                             .setCancelable(false)
@@ -310,10 +330,16 @@ public class ServiceRequestActivity extends Fragment {
                         if(commName.get(i).get("company").equals(compa.getSelectedItem())){
                             companyid =commName.get(i).get("companyid");
                             //progressDialog.setTitle("In Progress...");
-                            progressDialog.setMessage("Please Wait...");
-                            progressDialog.show();
 
-                            sendDetailsToServer();
+                            if((!phone.getText().toString().equals(null)&&phone.getText().length()!=0)
+                                    &&(!address.getText().toString().equals(null)&&address.getText().length()!=0)
+                                    //&&(!description.getText().toString().equals(null)&&description.getText().length()!=0)
+                                    &&(!times.getSelectedItem().equals("Select Time"))
+                                    &&(spinner.getSelectedItemPosition()!=0)){
+                                //Toast.makeText(getActivity(),"ok",Toast.LENGTH_SHORT).show();
+                                sendDetailsToServer();
+                            }
+                            //sendDetailsToServer();
                             //Toast.makeText(getActivity(),commName.get(i).get("companyid"),Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -345,6 +371,18 @@ public class ServiceRequestActivity extends Fragment {
         Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler(getActivity(), LoginActivity.class));
         return v;
     }
+    private boolean isValidPhone(String surname1) {
+        if (surname1!=null&&surname1.length()>0){
+            return true;
+        }
+        return false;
+    }
+    private boolean isValidAddress(String surname1) {
+        if (surname1!=null&&surname1.length()>0){
+            return true;
+        }
+        return false;
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -368,6 +406,8 @@ public class ServiceRequestActivity extends Fragment {
     }
 
     private void getDetailsFromServer() {
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.show();
         try {
             RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
             final JSONObject jsonBody = new JSONObject();

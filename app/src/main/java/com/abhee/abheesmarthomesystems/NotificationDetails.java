@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,17 +32,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NotificationDetails extends Fragment {
-    static String tasknos,customerids;
+    static String tasknos,customerids,request_types;
     ArrayList<HashMap<String,String>> details;
     ArrayList<HashMap<String,String>> history;
     AppCompatTextView serviceType,subject,requesttime,descriptions,priority,communicationaddresss,customerId,taskno,warrantys,categorys,taskdeadline;
     AppCompatImageView imgfile,uploadfile;
     LinearLayout show;
-
-    public static NotificationDetails newInstance(String taskno, String customerid) {
+    HashMap<String, String> hm;
+    ArrayList<HashMap<String, String>> mCategoryList;
+    String image,image2;
+    public static NotificationDetails newInstance(String taskno, String customerid,String request_type) {
         NotificationDetails fragment = new NotificationDetails();
         tasknos=taskno;
         customerids=customerid;
+        request_types=request_type;
         return fragment;
     }
 
@@ -56,7 +60,12 @@ public class NotificationDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_notification_details, container, false);
-        getDetailsforserver();
+        if(request_types.equals("Service Request")){
+            getDetailsforserver();
+        }else{
+            getDetailsToQuotation();
+        }
+
         component(v);
 
         return  v;
@@ -120,32 +129,32 @@ public class NotificationDetails extends Fragment {
                                 JSONArray NotificationList = jsonObject.getJSONArray("NotificationList");
                                 for (int i =0;i<ServiceDtailsList.length();i++){
                                     JSONObject obj= ServiceDtailsList.getJSONObject(i);
-                                    HashMap<String,String> hm = new HashMap<>();
-                                    hm.put("serviceType",obj.getString("serviceType"));
-                                    hm.put("subject",obj.getString("subject"));
-                                    hm.put("requesttime",obj.getString("requesttime"));
-                                    hm.put("description",obj.getString("description"));
-                                    hm.put("priority",obj.getString("priority"));
-                                    hm.put("communicationaddress",obj.getString("communicationaddress"));
+                                    HashMap<String,String> hm1 = new HashMap<>();
+                                    hm1.put("serviceType",obj.getString("serviceType"));
+                                    hm1.put("subject",obj.getString("subject"));
+                                    hm1.put("requesttime",obj.getString("requesttime"));
+                                    hm1.put("description",obj.getString("description"));
+                                    hm1.put("priority",obj.getString("priority"));
+                                    hm1.put("communicationaddress",obj.getString("communicationaddress"));
                                     //hm.put("taskstatus",obj.getString("taskstatus"));
-                                    hm.put("imgfile",obj.getString("imgfile"));
-                                    hm.put("uploadfile",obj.getString("uploadfile"));
-                                    hm.put("customerId",obj.getString("customerId"));
-                                    hm.put("taskno",obj.getString("taskno"));
-                                    hm.put("warranty",obj.getString("warranty"));
+                                    hm1.put("imgfile",obj.getString("imgfile"));
+                                    hm1.put("uploadfile",obj.getString("uploadfile"));
+                                    hm1.put("customerId",obj.getString("customerId"));
+                                    hm1.put("taskno",obj.getString("taskno"));
+                                    hm1.put("warranty",obj.getString("warranty"));
                                    // hm.put("id",obj.getString("id"));
-                                    hm.put("category",obj.getString("category"));
-                                    hm.put("taskdeadline",obj.getString("taskdeadline"));
-                                    details.add(hm);
+                                    hm1.put("category",obj.getString("category"));
+                                    hm1.put("taskdeadline",obj.getString("taskdeadline"));
+                                    details.add(hm1);
 
                                 }for (int i =0;i<NotificationList.length();i++){
                                     JSONObject obj= NotificationList.getJSONObject(i);
-                                    HashMap<String,String> hm = new HashMap<>();
-                                    hm.put("notificationstatus",obj.getString("notificationstatus"));
-                                    hm.put("taskno",obj.getString("taskno"));
-                                    hm.put("description",obj.getString("description"));
-                                    hm.put("addComment",obj.getString("addComment"));
-                                    history.add(hm);
+                                    HashMap<String,String> hm1 = new HashMap<>();
+                                    hm1.put("notificationstatus",obj.getString("notificationstatus"));
+                                    hm1.put("taskno",obj.getString("taskno"));
+                                    hm1.put("description",obj.getString("description"));
+                                    hm1.put("addComment",obj.getString("addComment"));
+                                    history.add(hm1);
                                 }
 
                             }else{
@@ -167,6 +176,71 @@ public class NotificationDetails extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
+    }
+    private void getDetailsToQuotation() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        Map<String, String> postParam= new HashMap<String, String>();
+        postParam.put("salesrequestnumber",tasknos);
+        Log.i("custId",""+customerids);
+
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,
+                Constants.URL+"getquotationlistByRequestNo",new JSONObject(postParam), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                hm=new HashMap<String, String>();
+                Log.e("Logresponse  --->"," "+response.toString());
+                mCategoryList=new ArrayList<HashMap<String, String>>();
+                try{
+                    JSONObject json=new JSONObject(response.toString());
+                    JSONArray jsonarray = json.getJSONArray("quotationslist");
+                    JSONArray jsonarray2 = json.getJSONArray("AdminResponseList");
+                    for(int i=0; i<jsonarray.length(); i++) {
+                        JSONObject obj = jsonarray.getJSONObject(i);
+
+                        hm.put("modelname",obj.getString("modelname"));
+                        // hm.put("mobileno",obj.getString("mobileno"));
+                        hm.put("reqdesc",obj.getString("reqdesc"));
+                        hm.put("address",obj.getString("address"));
+                        hm.put("salesrequestnumber",obj.getString("salesrequestnumber"));
+                        hm.put("created_time",obj.getString("created_time"));
+
+                        // tsqi.setText(obj.getString("imgfiles"));
+                        image=obj.getString("imgfiles");
+                        Log.i("chikimage",""+image);
+                        //Picasso.with(getActivity()).load(Constants.IMG_URL+image).into(imageViewt);
+                    }
+                    for (int i=0;i<jsonarray2.length();i++){
+                        JSONObject obj1=jsonarray2.getJSONObject(i);
+                        int status=obj1.getInt("status");
+                        if(status!=0){
+
+                            hm=new HashMap<String,String>();
+                            hm.put("notes",obj1.getString("notes"));
+                            hm.put("quotation_documents",obj1.getString("quotation_documents"));
+
+                            image2=obj1.getString("quotation_documents");
+                            //Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(adminimage);
+
+
+                        }
+
+                    }
+                }catch(JSONException e){
+
+                }
+                Log.i("chiklist",mCategoryList.toString());
+                Log.i("hmsize",""+hm.size());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
 
 

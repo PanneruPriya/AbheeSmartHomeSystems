@@ -56,9 +56,9 @@ public class NotificationService extends Service {
         // Let it continue running until it is stopped.
         //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         Map<String,String> params = new HashMap<>();
-        params.put("assignby",custid);
+        params.put("customerid",custid);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL+"getNotificationByCustomerId", new JSONObject(params),
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL+"getQuotationNotificationByCustomerId", new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -66,24 +66,59 @@ public class NotificationService extends Service {
                         try {
                             int count;
                             JSONObject jsonObject = new JSONObject(response.toString());
-                            JSONArray jsonArray = jsonObject.getJSONArray("History");
-                            for (int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject1= jsonArray.getJSONObject(i);
-                                String kstatus= jsonObject1.getString("kstatus");
-                                String addComment = jsonObject1.getString("addComment");
-                                Intent intent1 = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
-                                PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent1, 0);
-                                Notification noti = new Notification.Builder(getApplicationContext())
-                                        .setContentTitle(kstatus)
-                                        .setContentText(addComment).setSmallIcon(R.drawable.icon)
-                                        .setContentIntent(pIntent).build();
-                                NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
-                                // hide the notification after its selected
-                                noti.flags |= Notification.FLAG_AUTO_CANCEL;
-                                notificationManager.notify(i, noti);
-                                count =i;
+                            String s = jsonObject.getString("status");
+                            //JSONArray jsonArray = jsonObject.getJSONArray("History");
+                            String[] data = s.split(",");
+                            Log.i("listtttt",data.toString());
+                            if(s.equals("Not_Found")){
+
                             }
-                            editor.putString("noticount",""+jsonArray.length());
+                            else {
+                                for (int j = 0; j <data.length; j++) {
+                                    String ss =data[j];
+                                    Log.i("listtttt",ss);
+                                    if (ss.equals("Quotation_List")) {
+                                        JSONArray jsonArray = jsonObject.getJSONArray("Quotation");
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                            String kstatus = jsonObject1.getString("requestType");
+                                            String addComment = jsonObject1.getString("notes");
+                                            Intent intent1 = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+                                            PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent1, 0);
+                                            Notification noti = new Notification.Builder(getApplicationContext())
+                                                    .setContentTitle(kstatus)
+                                                    .setContentText(addComment).setSmallIcon(R.drawable.icon)
+                                                    .setContentIntent(pIntent).build();
+                                            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+                                            // hide the notification after its selected
+                                            noti.flags |= Notification.FLAG_AUTO_CANCEL;
+                                            notificationManager.notify(i, noti);
+                                            count = i;
+                                        }
+                                    }
+                                    if (ss.equals("Service_List")) {
+                                        JSONArray jsonArray = jsonObject.getJSONArray("Service");
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                            String kstatus = jsonObject1.getString("kstatus");
+                                            String addComment = jsonObject1.getString("addComment");
+                                            Intent intent1 = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+                                            PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent1, 0);
+                                            Notification noti = new Notification.Builder(getApplicationContext())
+                                                    .setContentTitle(kstatus)
+                                                    .setContentText(addComment).setSmallIcon(R.drawable.icon)
+                                                    .setContentIntent(pIntent).build();
+                                            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+                                            // hide the notification after its selected
+                                            noti.flags |= Notification.FLAG_AUTO_CANCEL;
+                                            notificationManager.notify(i, noti);
+                                            count = i;
+                                        }
+                                    }
+                                }
+                            }
+
+                            //editor.putString("noticount",""+jsonArray.length());
                             editor.commit();
                         } catch (JSONException e) {
                             e.printStackTrace();
