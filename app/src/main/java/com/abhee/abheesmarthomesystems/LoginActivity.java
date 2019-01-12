@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (uname != null && pwd != null) {
                     sendDetailsToServer();
+                    //dialogbox.ErrorMessage(LoginActivity.this,"Server Is Slow");
                    // dialogbox.SuccessMessage(LoginActivity.this,"Loging Success");
                 }
             }

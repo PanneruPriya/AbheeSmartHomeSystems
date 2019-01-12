@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -35,12 +39,23 @@ public class NotificationDetails extends Fragment {
     static String tasknos,customerids,request_types;
     ArrayList<HashMap<String,String>> details;
     ArrayList<HashMap<String,String>> history;
+    LinearLayout service_layout,quatation_layout;
     AppCompatTextView serviceType,subject,requesttime,descriptions,priority,communicationaddresss,customerId,taskno,warrantys,categorys,taskdeadline;
     AppCompatImageView imgfile,uploadfile;
     LinearLayout show;
     HashMap<String, String> hm;
     ArrayList<HashMap<String, String>> mCategoryList;
     String image,image2;
+
+    TextView tv1,tv2,tv3,address,duedate,tsq1,tsq2,tsqi,tsq3,tsq4,tsq5,tsq6,tsq7,tsq8,tsq9;
+    ImageButton back_button;
+    AppCompatTextView title;
+    AlertDialog dialog;
+    ImageView imageViewt,adminimage;
+    LinearLayout customer,admin;
+    int width,heigth;
+
+
     public static NotificationDetails newInstance(String taskno, String customerid,String request_type) {
         NotificationDetails fragment = new NotificationDetails();
         tasknos=taskno;
@@ -60,18 +75,19 @@ public class NotificationDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_notification_details, container, false);
+        component(v);
         if(request_types.equals("Service Request")){
             getDetailsforserver();
         }else{
             getDetailsToQuotation();
         }
 
-        component(v);
 
+        Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler(getActivity(),LoginActivity.class));
         return  v;
     }
 
-    private void setdate() {
+    private void setdateofServiceRequset() {
         HashMap<String,String> hm = details.get(0);
 
         serviceType.setText(hm.get("serviceType"));
@@ -85,9 +101,24 @@ public class NotificationDetails extends Fragment {
         warrantys.setText(hm.get("warranty"));
         categorys.setText(hm.get("category"));
         taskdeadline.setText(hm.get("taskdeadline"));
+        service_layout.setVisibility(View.VISIBLE);
+    }
+
+    private  void setdateofQuotationRequset(){
+        HashMap<String,String> hm = mCategoryList.get(0);
+        tsq1.setText(hm.get("modelname"));
+        tsq2.setText(hm.get("reqdesc"));
+        tsq4.setText(hm.get("address"));
+        tsq5.setText(hm.get("salesrequestnumber"));
+        tsq3.setText(hm.get("created_time"));
+        tsq6.setText(hm.get("notes"));
+
     }
 
     private void component(View v) {
+        service_layout =v.findViewById(R.id.Service_View);
+        quatation_layout=v.findViewById(R.id.Quotation_view);
+
         details = new ArrayList<>();
         history = new ArrayList<>();
         serviceType=v.findViewById(R.id.serviceType);
@@ -110,6 +141,82 @@ public class NotificationDetails extends Fragment {
 
             }
         });
+
+
+
+        customer =(LinearLayout)v.findViewById(R.id.customerrequset);
+        admin=(LinearLayout)v.findViewById(R.id.adminresponse);
+        address=(TextView)v.findViewById(R.id.tv3);
+
+        tsq1=(TextView)v.findViewById(R.id.tsq1);
+        tsq2=(TextView)v.findViewById(R.id.tsq2);
+        tsq3=(TextView)v.findViewById(R.id.tsq3);
+        tsq4=(TextView)v.findViewById(R.id.tsq4);
+        tsq5=(TextView)v.findViewById(R.id.tsq5);
+        tsq6=(TextView)v.findViewById(R.id.tsq6);
+        imageViewt=(ImageView)v.findViewById(R.id.imageviewt);
+        adminimage=(ImageView)v.findViewById(R.id.adminimage);
+
+        imageViewt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                LayoutInflater inflater = getLayoutInflater();
+                View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
+                /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
+                // userInput.setText(code);
+                final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
+                final ImageView btnCancel = (ImageView) alertLayout.findViewById(R.id.btnCancel);
+                final ImageView viewimage = (ImageView) alertLayout.findViewById(R.id.imageView2);
+                Picasso.with(getActivity()).load(Constants.IMG_URL+image).into(viewimage);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                /*alert.setTitle("Image");
+                alert.setIcon(R.drawable.icon);*/
+                alert.setView(alertLayout);
+                alert.setCancelable(false);
+                final AlertDialog dialog = alert.create();
+                dialog.show();
+                dialog.getWindow().setLayout(width/2+200,width/2);
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //  Toast.makeText(mContext, "1", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        adminimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = getLayoutInflater();
+                View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
+                /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
+                // userInput.setText(code);
+                final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
+                final ImageView btnCancel = (ImageView) alertLayout.findViewById(R.id.btnCancel);
+                final ImageView viewimage = (ImageView) alertLayout.findViewById(R.id.imageView2);
+                Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(viewimage);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                /*alert.setTitle("Image");
+                alert.setIcon(R.drawable.icon);*/
+                alert.setView(alertLayout);
+                alert.setCancelable(false);
+                final AlertDialog dialog = alert.create();
+                dialog.show();
+                dialog.getWindow().setLayout(width/2+200,width/2);
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //  Toast.makeText(mContext, "1", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
     }
 
     private void getDetailsforserver() {
@@ -160,7 +267,7 @@ public class NotificationDetails extends Fragment {
                             }else{
                                 Toast.makeText(getActivity(),"history not found",Toast.LENGTH_SHORT).show();
                             }
-                            setdate();
+                            setdateofServiceRequset();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -203,11 +310,12 @@ public class NotificationDetails extends Fragment {
                         hm.put("address",obj.getString("address"));
                         hm.put("salesrequestnumber",obj.getString("salesrequestnumber"));
                         hm.put("created_time",obj.getString("created_time"));
+                        tsq1.setText(obj.getString("modelname"));
+                        tsq2.setText(obj.getString("reqdesc"));
+                        tsq4.setText(obj.getString("address"));
+                        tsq5.setText(obj.getString("salesrequestnumber"));
+                        tsq3.setText(obj.getString("created_time"));
 
-                        // tsqi.setText(obj.getString("imgfiles"));
-                        image=obj.getString("imgfiles");
-                        Log.i("chikimage",""+image);
-                        //Picasso.with(getActivity()).load(Constants.IMG_URL+image).into(imageViewt);
                     }
                     for (int i=0;i<jsonarray2.length();i++){
                         JSONObject obj1=jsonarray2.getJSONObject(i);
@@ -217,14 +325,14 @@ public class NotificationDetails extends Fragment {
                             hm=new HashMap<String,String>();
                             hm.put("notes",obj1.getString("notes"));
                             hm.put("quotation_documents",obj1.getString("quotation_documents"));
-
-                            image2=obj1.getString("quotation_documents");
-                            //Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(adminimage);
-
+                            tsq6.setText(obj1.getString("notes"));
 
                         }
 
                     }
+                    //mCategoryList.add(hm);
+                    //setdateofQuotationRequset();
+                    quatation_layout.setVisibility(View.VISIBLE);
                 }catch(JSONException e){
 
                 }

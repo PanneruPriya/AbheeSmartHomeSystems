@@ -49,6 +49,8 @@ public class dialogbox {
         Picasso.with(activity).load(R.drawable.error).into(imageView);
         message =(AppCompatTextView)alertLayout.findViewById(R.id.immssg);
         imglayout=(LinearLayout)alertLayout.findViewById(R.id.immsg);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width/2-100,width/2-200);
+        imageView.setLayoutParams(layoutParams);
         imglayout.setVisibility(View.VISIBLE);
         message.setText(msg);
         alert = new AlertDialog.Builder(activity);
@@ -80,6 +82,8 @@ public class dialogbox {
         final ImageView btnCancel = (ImageView) alertLayout.findViewById(R.id.btnCancel);
         ImageView imageView = (ImageView) alertLayout.findViewById(R.id.messageimage);
         Picasso.with(activity).load(R.drawable.checked).into(imageView);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width/2-100,width/2-200);
+        imageView.setLayoutParams(layoutParams);
         imglayout=(LinearLayout)alertLayout.findViewById(R.id.immsg);
         imglayout.setVisibility(View.VISIBLE);
         message =(AppCompatTextView)alertLayout.findViewById(R.id.immssg);

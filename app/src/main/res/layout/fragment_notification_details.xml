@@ -10,11 +10,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+            <LinearLayout
+            android:id="@+id/Service_View"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -345,6 +351,297 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/Quotation_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <!--android:background="@drawable/cellshape"-->
+                    <LinearLayout
+                        android:id="@+id/customerrequset"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:visibility="visible">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Customer Request"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:textAlignment="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="15dp">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5"
+                                android:text="Product Model Name"/>
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="@color/year"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5"
+                                android:text="Comments "/>
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="@color/year"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:text="Created Time "
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="@color/year"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:text="Address "
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="@color/year"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:text="Request Number "
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5" />
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="@color/year"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/black" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:orientation="vertical">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_margin="9dp"
+                                android:textSize="@dimen/fab_margin"
+                                android:hint="Uploaded Image"/>
+                            <ImageView
+                                android:layout_width="160dp"
+                                android:layout_height="160dp"
+                                android:id="@+id/imageviewt"
+                                android:layout_gravity="center"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/adminresponse"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cellshape"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Admin Response"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/blackColor"
+                            android:textAlignment="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatTextView
+                                android:text="Notes  "
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:layout_weight="1.5" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tsq6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:textColor="#000"
+                                android:background="@drawable/cellshape"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/black" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="4dp"
+                            android:layout_marginLeft="2dp"
+                            >
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:textSize="@dimen/fab_margin"
+                                android:layout_marginRight="2dp"
+                                android:textAlignment="center"
+                                android:layout_margin="9dp"
+                                android:text="Quotation"
+                                />
+                            <ImageView
+                                android:id="@+id/adminimage"
+                                android:layout_width="160dp"
+                                android:layout_height="160dp"
+                                android:layout_gravity="center"/>
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/black" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
