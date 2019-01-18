@@ -107,13 +107,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         &&(!address.getText().toString().equals(null)&&(address.getText().length()!=0))){
                     //sendDetailsDuplicateMob();
                     //sendDetailsDuplicateEmail();
-                    if(repswd.getText().toString().equals(pswd.getText().toString())) {
+                    String fname = removeSpace(frstName.getText().toString());
+                    String lname = removeSpace(lstName.getText().toString());
+                    if(fname.length()!=0&&lname.length()!=0) {
                         progressDialog.setMessage("please wait...");
                         progressDialog.show();
                         sendDetailsToServer();
                     }else{
-                        pswd.setError("Password not Matched");
-                        repswd.setError("Password not Matched");
+                        Toast.makeText(RegisterActivity.this, "Plaese Enter the Frist Name and Last Name WithOut Space", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{

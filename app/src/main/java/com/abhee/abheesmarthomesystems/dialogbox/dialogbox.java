@@ -109,7 +109,7 @@ public class dialogbox {
         this.activity = activity;
         prograssbox();
         dialog.show();
-        dialog.getWindow().setLayout(500,200);
+        dialog.getWindow().setLayout(width/2+200,width/2);
     }
     public void prograssBoxClose()
     {

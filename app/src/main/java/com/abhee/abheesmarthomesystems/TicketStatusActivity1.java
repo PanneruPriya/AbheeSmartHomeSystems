@@ -22,6 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,17 +55,18 @@ public class TicketStatusActivity1 extends Fragment {
 
     static String servicetypes, uploadfiles, requesttimes, modelnames, descriptions,
      warrantys, categorys, companynames, tasknos, communicationaddresss,
-     taskdeadlines, assignedtos, prioritys, descriptionAs, uploadfileAs, subjects,kstatuss,mobilenumbers;
+     taskdeadlines, assignedtos, prioritys, descriptionAs, uploadfileAs, subjects,kstatuss,mobilenumbers,invimgs;
 
     AppCompatTextView Company,Model,Task_No,mnumber,Address,Due_Date,description,warranty,category,assignedtoA,descriptionA,subjectA,taskdeadlineA,priorityA,status,AdminUploadtitle;
-    ImageView cusUploaded,adminUploading;
+    ImageView cusUploaded,adminUploading,invimage;
+    LinearLayout invView;
     public static AppCompatTextView farname;
     AppCompatButton reassign;
     AlertDialog dialog;
     public static TicketStatusActivity1 newInstance(
             String servicetype,String uploadfile,String requesttime,String modelname,String description,
             String warranty,String category,String companyname,String taskno,String communicationaddress,
-            String taskdeadline,String assignedto,String priority,String descriptionA,String uploadfileA,String subject,String kstatus,String mobilenumber
+            String taskdeadline,String assignedto,String priority,String descriptionA,String uploadfileA,String subject,String kstatus,String mobilenumber,String invimg
     ) {
         TicketStatusActivity1 fragment = new TicketStatusActivity1();
         servicetypes =servicetype;
@@ -85,6 +87,7 @@ public class TicketStatusActivity1 extends Fragment {
         subjects =subject;
         kstatuss=kstatus;
         mobilenumbers =mobilenumber;
+        invimgs=invimg;
         return fragment;
     }
 
@@ -134,7 +137,10 @@ public class TicketStatusActivity1 extends Fragment {
         status=(AppCompatTextView)v.findViewById(R.id.kstatus);
         AdminUploadtitle=(AppCompatTextView)v.findViewById(R.id.upload);
         mnumber =(AppCompatTextView)v.findViewById(R.id.mobilenumber);
+        invView = (LinearLayout)v.findViewById(R.id.invView);
+        invimage=(ImageView)v.findViewById(R.id.invImage);
         reassign=(AppCompatButton)v.findViewById(R.id.reassign);
+
         reassign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,6 +225,10 @@ public class TicketStatusActivity1 extends Fragment {
             reassign.setVisibility(View.VISIBLE);
         }
         Picasso.with(getActivity()).load(Constants.IMG_URL+uploadfiles).into(cusUploaded);
+        if(invimgs.length()!=3){
+            invView.setVisibility(View.VISIBLE);
+            Picasso.with(getActivity()).load(Constants.IMG_URL+invimgs).into(invimage);
+        }
         cusUploaded.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

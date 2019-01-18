@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.abhee.abheesmarthomesystems.Constants;
 import com.abhee.abheesmarthomesystems.NotificationReceiverActivity;
+import com.abhee.abheesmarthomesystems.PushNotification;
 import com.abhee.abheesmarthomesystems.R;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -49,7 +50,7 @@ public class NotificationService extends Service {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         sharedPreferences = this.getSharedPreferences("Abhee", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         custid= sharedPreferences.getString("custid", "");
@@ -83,7 +84,11 @@ public class NotificationService extends Service {
                                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                             String kstatus = jsonObject1.getString("requestType");
                                             String addComment = jsonObject1.getString("notes");
-                                            Intent intent1 = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+                                            String salesrequestnumber = jsonObject1.getString("salesrequestnumber");
+                                            Intent intent1 = new Intent(getApplicationContext(), PushNotification.class);
+                                            intent1.putExtra("Quotation","Quotation");
+                                            intent1.putExtra("taskno",salesrequestnumber);
+                                            intent1.putExtra("customerid",custid);
                                             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent1, 0);
                                             Notification noti = new Notification.Builder(getApplicationContext())
                                                     .setContentTitle(kstatus)
@@ -102,7 +107,11 @@ public class NotificationService extends Service {
                                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                             String kstatus = jsonObject1.getString("kstatus");
                                             String addComment = jsonObject1.getString("addComment");
-                                            Intent intent1 = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+                                            String taskno = jsonObject1.getString("taskno");
+                                            Intent intent1 = new Intent(getApplicationContext(), PushNotification.class);
+                                            intent1.putExtra("Quotation","Service");
+                                            intent1.putExtra("taskno",taskno);
+                                            intent1.putExtra("customerid",custid);
                                             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent1, 0);
                                             Notification noti = new Notification.Builder(getApplicationContext())
                                                     .setContentTitle(kstatus)

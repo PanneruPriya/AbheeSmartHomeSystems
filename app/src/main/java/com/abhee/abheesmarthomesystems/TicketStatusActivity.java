@@ -93,7 +93,7 @@ public class TicketStatusActivity extends Fragment {
                 custid = hm.get("customerId");
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame, new TicketStatusActivity1().newInstance(hm.get("servicetyp"),hm.get("uploadfile"),hm.get("requesttime"),hm.get("modelname"),hm.get("description"),hm.get("warranty"),hm.get("category"),
-                        hm.get("companyname"),hm.get("taskno"),hm.get("communicationaddress"),hm.get("taskdeadline"),hm.get("assignedto"),hm.get("priority"),hm.get("descriptionA"),hm.get("uploadfileA"),hm.get("subject"),hm.get("kstatus"),hm.get("mobilenumber")));
+                        hm.get("companyname"),hm.get("taskno"),hm.get("communicationaddress"),hm.get("taskdeadline"),hm.get("assignedto"),hm.get("priority"),hm.get("descriptionA"),hm.get("uploadfileA"),hm.get("subject"),hm.get("kstatus"),hm.get("mobilenumber"),hm.get("invimg")));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -170,6 +170,9 @@ public class TicketStatusActivity extends Fragment {
                                     }
                                     if(!jsonObject3.getString("kstatus").equals(null)){
                                         hm.put("kstatus",jsonObject3.getString("kstatus"));
+                                    }
+                                    if(!jsonObject3.getString("invimg").equals(" ")){
+                                        hm.put("invimg",jsonObject3.getString("invimg"));
                                     }
                                 }
 
