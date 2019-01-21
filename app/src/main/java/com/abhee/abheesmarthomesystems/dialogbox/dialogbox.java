@@ -109,7 +109,7 @@ public class dialogbox {
         this.activity = activity;
         prograssbox();
         dialog.show();
-        dialog.getWindow().setLayout(width/2+200,width/2);
+        dialog.getWindow().setLayout(width/2+200,width/2-150);
     }
     public void prograssBoxClose()
     {
@@ -128,7 +128,7 @@ public class dialogbox {
         alert.setView(alertLayout);
         alert.setCancelable(false);
         dialog = alert.create();
-        dialog.getWindow().setLayout(width/2+200,width/2);
+        dialog.getWindow().setLayout(width/2+200,width/2+200);
     }
 
 

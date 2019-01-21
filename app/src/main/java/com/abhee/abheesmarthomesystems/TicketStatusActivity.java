@@ -171,7 +171,7 @@ public class TicketStatusActivity extends Fragment {
                                     if(!jsonObject3.getString("kstatus").equals(null)){
                                         hm.put("kstatus",jsonObject3.getString("kstatus"));
                                     }
-                                    if(!jsonObject3.getString("invimg").equals(" ")){
+                                    if(!jsonObject3.getString("invimg").equals(null)){
                                         hm.put("invimg",jsonObject3.getString("invimg"));
                                     }
                                 }
