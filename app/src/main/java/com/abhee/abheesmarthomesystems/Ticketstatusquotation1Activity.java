@@ -1,6 +1,7 @@
 package com.abhee.abheesmarthomesystems;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -8,16 +9,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +38,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Ticketstatusquotation1Activity extends Fragment {
@@ -55,6 +61,10 @@ public class Ticketstatusquotation1Activity extends Fragment {
     LinearLayout customer,admin;
     String image,image2;
     int width,heigth;
+    ArrayList<HashMap<String,String>> adminlist;
+    LinearLayout adminlistview;
+    AppCompatTextView notes,datatime;
+    AppCompatImageView adminimageview;
 
     public static Ticketstatusquotation1Activity newInstance( String rnum) {
         Ticketstatusquotation1Activity fragment = new Ticketstatusquotation1Activity();
@@ -76,7 +86,6 @@ public class Ticketstatusquotation1Activity extends Fragment {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         width =display.getWidth();
         heigth=display.getHeight();
-        // back_button=(ImageButton)v.findViewById(R.id.back_button);
         title=(AppCompatTextView)v.findViewById(R.id.title);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setCustomView(R.layout.activity_navigationtext);
         View view =((AppCompatActivity)getActivity()).getSupportActionBar().getCustomView();
@@ -91,14 +100,19 @@ public class Ticketstatusquotation1Activity extends Fragment {
         tsq3=(TextView)v.findViewById(R.id.tsq3);
         tsq4=(TextView)v.findViewById(R.id.tsq4);
         tsq5=(TextView)v.findViewById(R.id.tsq5);
-        tsq6=(TextView)v.findViewById(R.id.tsq6);
+        //tsq6=(TextView)v.findViewById(R.id.tsq6);
+       /* notes = (AppCompatTextView) v.findViewById(R.id.notes);
+        datatime = (AppCompatTextView) v.findViewById(R.id.dataandtime);
+        adminimageview = (AppCompatImageView) v.findViewById(R.id.adminimageview);*/
+        adminlistview=(LinearLayout) v.findViewById(R.id.adminlist);
         imageViewt=(ImageView)v.findViewById(R.id.imageviewt);
-        adminimage=(ImageView)v.findViewById(R.id.adminimage);
+        //adminimage=(ImageView)v.findViewById(R.id.adminimage);
 
         sharedPreferences = getActivity().getSharedPreferences("Abhee", Context.MODE_PRIVATE);
         userid=sharedPreferences.getString("userid", "");
         custid=sharedPreferences.getString("custid", "");
         mobile=sharedPreferences.getString("mobilenumber","");
+        adminlist = new ArrayList<>();
         getDetailsToServer();
         imageViewt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,15 +120,10 @@ public class Ticketstatusquotation1Activity extends Fragment {
 
                 LayoutInflater inflater = getLayoutInflater();
                 View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
-                /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
-                // userInput.setText(code);
-                final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
                 final ImageView btnCancel = (ImageView) alertLayout.findViewById(R.id.btnCancel);
                 final ImageView viewimage = (ImageView) alertLayout.findViewById(R.id.imageView2);
                 Picasso.with(getActivity()).load(Constants.IMG_URL+image).into(viewimage);
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                /*alert.setTitle("Image");
-                alert.setIcon(R.drawable.icon);*/
                 alert.setView(alertLayout);
                 alert.setCancelable(false);
                 final AlertDialog dialog = alert.create();
@@ -130,20 +139,20 @@ public class Ticketstatusquotation1Activity extends Fragment {
                 });
             }
         });
-        adminimage.setOnClickListener(new View.OnClickListener() {
+        /*adminimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LayoutInflater inflater = getLayoutInflater();
                 View alertLayout = inflater.inflate(R.layout.imageviewdialog, null);
-                /*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
+                *//*final EditText userInput = (EditText) alertLayout.findViewById(R.id.et_input);
                 // userInput.setText(code);
-                final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*/
+                final Button btnSave = (Button) alertLayout.findViewById(R.id.btnVerify);*//*
                 final ImageView btnCancel = (ImageView) alertLayout.findViewById(R.id.btnCancel);
                 final ImageView viewimage = (ImageView) alertLayout.findViewById(R.id.imageView2);
                 Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(viewimage);
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                /*alert.setTitle("Image");
-                alert.setIcon(R.drawable.icon);*/
+                *//*alert.setTitle("Image");
+                alert.setIcon(R.drawable.icon);*//*
                 alert.setView(alertLayout);
                 alert.setCancelable(false);
                 final AlertDialog dialog = alert.create();
@@ -158,7 +167,7 @@ public class Ticketstatusquotation1Activity extends Fragment {
                     }
                 });
             }
-        });
+        });*/
         Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler(getActivity(),LoginActivity.class));
         return v;
     }
@@ -177,13 +186,13 @@ public class Ticketstatusquotation1Activity extends Fragment {
                 mCategoryList=new ArrayList<HashMap<String, String>>();
                 try{
                     JSONObject json=new JSONObject(response.toString());
+                    String AdminResponseStatus= String.valueOf(json.getString("AdminResponseStatus"));
                     JSONArray jsonarray = json.getJSONArray("quotationslist");
-                    JSONArray jsonarray2 = json.getJSONArray("AdminResponseList");
+
                     for(int i=0; i<jsonarray.length(); i++) {
                             JSONObject obj = jsonarray.getJSONObject(i);
                             customer.setVisibility(View.VISIBLE);
                             hm.put("modelname",obj.getString("modelname"));
-                           // hm.put("mobileno",obj.getString("mobileno"));
                            hm.put("reqdesc",obj.getString("reqdesc"));
                             hm.put("address",obj.getString("address"));
                             hm.put("salesrequestnumber",obj.getString("salesrequestnumber"));
@@ -193,29 +202,32 @@ public class Ticketstatusquotation1Activity extends Fragment {
                               tsq4.setText(obj.getString("address"));
                              tsq5.setText(obj.getString("salesrequestnumber"));
                              tsq3.setText(obj.getString("created_time"));
-                            // tsqi.setText(obj.getString("imgfiles"));
                         image=obj.getString("imgfiles");
                         Log.i("chikimage",""+image);
                         Picasso.with(getActivity()).load(Constants.IMG_URL+image).into(imageViewt);
                     }
-                    for (int i=0;i<jsonarray2.length();i++){
-                        JSONObject obj1=jsonarray2.getJSONObject(i);
-                        int status=obj1.getInt("status");
-                        if(status!=0){
-                            admin.setVisibility(View.VISIBLE);
-                            hm=new HashMap<String,String>();
-                           hm.put("notes",obj1.getString("notes"));
-                            //hm.put("reqdesc",obj1.getString("reqdesc"));
-                           hm.put("quotation_documents",obj1.getString("quotation_documents"));
-                           //hm.put("status",obj1.getString("status"));
-                          tsq6.setText(obj1.getString("notes"));
-                          image2=obj1.getString("quotation_documents");
-                            Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(adminimage);
-
-
+                    if(AdminResponseStatus.equals("1")){
+                        JSONArray jsonarray2 = json.getJSONArray("AdminResponseList");
+                        admin.setVisibility(View.VISIBLE);
+                        for (int i=0;i<jsonarray2.length();i++) {
+                            JSONObject obj1 = jsonarray2.getJSONObject(i);
+                               /* hm=new HashMap<String,String>();
+                               hm.put("notes",obj1.getString("notes"));
+                               hm.put("quotation_documents",obj1.getString("quotation_documents"));
+                              tsq6.setText(obj1.getString("notes"));
+                              image2=obj1.getString("quotation_documents");
+                                Picasso.with(getActivity()).load(Constants.IMG_URL+image2).into(adminimage);*/
+                            hm = new HashMap<>();
+                            hm.put("updated_time",obj1.getString("updated_time"));
+                            hm.put("filename",obj1.getString("filename"));
+                            hm.put("notes",obj1.getString("notes"));
+                            //adminlist.add(hm);
+                            addfield(hm.get("updated_time"),hm.get("filename"),hm.get("notes"));
                         }
 
                     }
+                    //ListviewAdapter1 adapter1 = new ListviewAdapter1(getActivity(),adminlist);
+                    //adminlistview.setAdapter(adapter1);
                 }catch(JSONException e){
 
                 }
@@ -235,6 +247,20 @@ public class Ticketstatusquotation1Activity extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
+
+    private void addfield(String updated_time,String filename,String notess) {
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.listview_row1, null);
+        notes = (AppCompatTextView) rowView.findViewById(R.id.notes);
+        datatime = (AppCompatTextView) rowView.findViewById(R.id.dataandtime);
+        adminimageview = (AppCompatImageView) rowView.findViewById(R.id.adminimageview);
+        notes.setText(notess);
+        datatime.setText(updated_time);
+        Log.i("testttt","tttttttttt");
+        Picasso.with(getActivity()).load(Constants.IMG_URL+filename).into(adminimageview);
+        adminlistview.addView(rowView, adminlistview.getChildCount() - 1);
+    }
+
     public void chik() {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.alertlayout1, null);
@@ -261,4 +287,59 @@ public class Ticketstatusquotation1Activity extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+   /* public class ListviewAdapter1 extends BaseAdapter {
+        public ArrayList<HashMap<String,String>> productList;
+        Activity activity;
+
+        public ListviewAdapter1(Activity activity, ArrayList<HashMap<String,String>> productList) {
+            super();
+            this.activity = activity;
+            this.productList = productList;
+        }
+
+        @Override
+        public int getCount() {
+            return productList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return productList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        private class ViewHolder {
+            AppCompatTextView notes,datatime;
+            AppCompatImageView adminimageview;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            ViewHolder holder;
+            LayoutInflater inflater = activity.getLayoutInflater();
+
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.listview_row1, null);
+                holder = new ViewHolder();
+                holder.notes = (AppCompatTextView) convertView.findViewById(R.id.notes);
+                holder.datatime = (AppCompatTextView) convertView.findViewById(R.id.dataandtime);
+                holder.adminimageview = (AppCompatImageView) convertView.findViewById(R.id.adminimageview);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            HashMap<String,String> item = productList.get(position);
+            holder.notes.setText(item.get("notes"));
+            holder.datatime.setText(item.get("updated_time"));
+            Picasso.with(getActivity()).load(Constants.IMG_URL+hm.get("filename")).into(holder.adminimageview);
+            return convertView;
+        }
+    }*/
+
 }

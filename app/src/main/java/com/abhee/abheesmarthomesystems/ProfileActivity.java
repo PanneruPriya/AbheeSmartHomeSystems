@@ -73,13 +73,13 @@ public class ProfileActivity extends Fragment {
         mobile = (EditText) v.findViewById(R.id.text3);
         email = (EditText) v.findViewById(R.id.text4);
         address=(EditText)v.findViewById(R.id.text5);
-        cid=(EditText)v.findViewById(R.id.textid);
+        //cid=(EditText)v.findViewById(R.id.textid);
         first.setEnabled(false);
         last.setEnabled(false);
         mobile.setEnabled(false);
         email.setEnabled(false);
         address.setEnabled(false);
-        cid.setEnabled(false);
+        //cid.setEnabled(false);
         sharedPreferences = getActivity().getSharedPreferences("Abhee", Context.MODE_PRIVATE);
         mob =sharedPreferences.getString("mobilenumber","");
         pass=sharedPreferences.getString("password","");
@@ -227,8 +227,8 @@ public class ProfileActivity extends Fragment {
 
                                 address.setText(obj.getString("address"));
                                 address.setEnabled(false);
-                                cid.setText(obj.getString("customerId"));
-                                cid.setEnabled(false);
+                               // cid.setText(obj.getString("customerId"));
+                                //cid.setEnabled(false);
 
                             }
                         }else{

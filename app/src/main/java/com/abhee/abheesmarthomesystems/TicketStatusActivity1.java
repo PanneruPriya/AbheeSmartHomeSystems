@@ -225,9 +225,11 @@ public class TicketStatusActivity1 extends Fragment {
             reassign.setVisibility(View.VISIBLE);
         }
         Picasso.with(getActivity()).load(Constants.IMG_URL+uploadfiles).into(cusUploaded);
-        if(invimgs.length()!=1){
-            invView.setVisibility(View.VISIBLE);
-            Picasso.with(getActivity()).load(Constants.IMG_URL+invimgs).into(invimage);
+        if(kstatuss.equals("INVOICE GENERATED")) {
+            if (invimgs.length() != 1) {
+                invView.setVisibility(View.VISIBLE);
+                Picasso.with(getActivity()).load(Constants.IMG_URL + invimgs).into(invimage);
+            }
         }
         cusUploaded.setOnClickListener(new View.OnClickListener() {
             @Override

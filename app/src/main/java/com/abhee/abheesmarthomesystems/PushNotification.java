@@ -255,7 +255,7 @@ public class PushNotification extends AppCompatActivity {
         Log.i("custId",""+custid);
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,
-                Constants.URL+"getquotationlistByRequestNo",new JSONObject(postParam), new Response.Listener<JSONObject>() {
+                Constants.URL+"getquotationByRequestNo",new JSONObject(postParam), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 hm=new HashMap<String, String>();
